@@ -6,17 +6,61 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login Page</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <div class="login-form">
-    <ion-card>
-      <ion-input label="AppID" labelPlacement="stacked" placeholder="Enter ApplicationID">{{AppID}}</ion-input>
-      <ion-input label="UserID" labelPlacement="stacked" placeholder="Enter UserID">{{UserID}}</ion-input>
-      <ion-input label="AccessToken" labelPlacement="stacked" placeholder="Enter AccessToken">{{AccessToken}}</ion-input>
-      <button ion-button color="primary" (click)="onLogin()">Login</button>
-    </ion-card>
+    <form #loginForm="ngForm" novalidate>
+      <ion-card>
+        <ion-input
+        label="Application ID"
+        labelPlacement="stacked"
+        placeholder="Enter Application ID"
+        fill="transparent"
+        [(ngModel)]="login.AppID"
+        name="AppID"
+        type="text"
+        #AppID="ngModel"
+        spellcheck="false"
+        autocapitalize="off"
+        errorText="Application ID is required"
+        required>
+        </ion-input>
+
+        <ion-input
+        label="User ID"
+        labelPlacement="stacked"
+        placeholder="Enter User ID"
+        fill="transparent"
+        [(ngModel)]="login.UserID"
+        name="UserID"
+        type="text"
+        #UserID="ngModel"
+        spellcheck="false"
+        autocapitalize="off"
+        errorText="User ID is required"
+        required>
+        </ion-input>
+
+        <ion-input
+        label="Access Token"
+        labelPlacement="stacked"
+        placeholder="Enter User ID"
+        fill="transparent"
+        [(ngModel)]="login.AccessToken"
+        name="AccessToken"
+        type="text"
+        #AccessToken="ngModel"
+        spellcheck="false"
+        autocapitalize="off"
+        errorText="Access Token is required"
+        required>
+        </ion-input>
+
+        <button ion-button color="primary" (click)="onLogin()">Login</button>
+      </ion-card>
+    </form>
   </div>
 </ion-content>

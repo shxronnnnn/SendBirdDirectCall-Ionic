@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 
 
 @Injectable()
+
 export class UserData {
   favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
@@ -11,27 +12,27 @@ export class UserData {
     public storage: Storage
   ) { }
 
-  login(A: string): Promise<any> {
+  login(AppID: string): Promise<any> {
     return this.storage.set(this.HAS_LOGGED_IN, true).then(() => {
-      this.setUsername(username);
+      //this.setAppID(AppID);
       return window.dispatchEvent(new CustomEvent('user:login'));
     });
   }
 
   logout(): Promise<any> {
     return this.storage.remove(this.HAS_LOGGED_IN).then(() => {
-      return this.storage.remove('username');
+      return this.storage.remove('AppID');
     }).then(() => {
       window.dispatchEvent(new CustomEvent('user:logout'));
     });
   }
 
-  setUsername(username: string): Promise<any> {
-    return this.storage.set('username', username);
+  setAppID(AppID: string): Promise<any> {
+    return this.storage.set('AppID', AppID);
   }
 
-  getUsername(): Promise<string> {
-    return this.storage.get('username').then((value) => {
+  getAppID(): Promise<string> {
+    return this.storage.get('AppID').then((value) => {
       return value;
     });
   }

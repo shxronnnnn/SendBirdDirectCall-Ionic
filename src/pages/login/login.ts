@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserOptions } from './user-options';
 import { NgForm } from '@angular/forms';
 import { UserData } from '../../providers/user-data/user-data';
-import { authenticate, init } from 'sendbird-calls';
+import { authenticate, init, useMedia, connectWebSocket } from 'sendbird-calls';
 
 
 /**
@@ -28,11 +28,9 @@ export class LoginPage {
   onLogin(form: NgForm) {
     // Save Credentials
     this.submitted = true;
-    if (form.valid) {
-      this.userData.login(this.login.AppID);
-      this.userData.login(this.login.UserID);
-      this.userData.login(this.login.AccessToken);
-    }
+    this.userData.login(this.login.AppID);
+    this.userData.login(this.login.UserID);
+    this.userData.login(this.login.AccessToken);
 
     // SendBirdCall Init
     this.initSendBirdCall(this.login.AppID);
@@ -53,8 +51,12 @@ export class LoginPage {
         alert("authentication error");
       }
       else {
+        connectWebSocket()
+        .then(/* Succeeded to connect */)
+        .catch(/* Failed to connect */);
         alert("authentication success");
-        //go to calling page
+        useMedia; // access mircrophone & camera
+
       }
     });
   }

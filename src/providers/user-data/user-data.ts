@@ -5,30 +5,31 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 
 export class UserData {
-  favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
 
   constructor(
     public storage: Storage
   ) { }
 
-  login(AppID: string): Promise<any> {
+  login(AppID: string, UserID: string, AccessToken: string): Promise<any> {
     return this.storage.set(this.HAS_LOGGED_IN, true).then(() => {
-      //this.setAppID(AppID);
+      this.setAppID(AppID);
+      this.setUserID(UserID);
+      this.setAccessToken(AccessToken);
       return window.dispatchEvent(new CustomEvent('user:login'));
-    });
-  }
-
-  logout(): Promise<any> {
-    return this.storage.remove(this.HAS_LOGGED_IN).then(() => {
-      return this.storage.remove('AppID');
-    }).then(() => {
-      window.dispatchEvent(new CustomEvent('user:logout'));
     });
   }
 
   setAppID(AppID: string): Promise<any> {
     return this.storage.set('AppID', AppID);
+  }
+
+  setUserID(UserID: string): Promise<any> {
+    return this.storage.set('UserID', UserID);
+  }
+
+  setAccessToken(AccessToken: string): Promise<any> {
+    return this.storage.set('AccessToken', AccessToken);
   }
 
   getAppID(): Promise<string> {

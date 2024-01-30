@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserOptions } from './user-options';
 import { NgForm } from '@angular/forms';
 import { UserData } from '../../providers/user-data/user-data';
-import { authenticate, init, useMedia, connectWebSocket } from 'sendbird-calls';
+import { authenticate, init, connectWebSocket } from 'sendbird-calls';
+import { CallPage } from '../call/call';
 
 
 /**
@@ -21,6 +22,7 @@ import { authenticate, init, useMedia, connectWebSocket } from 'sendbird-calls';
 export class LoginPage {
   login: UserOptions = {AppID: '', UserID: '', AccessToken: ''}
   submitted = false;
+  callPage: CallPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userData: UserData,) {
   }
@@ -28,13 +30,12 @@ export class LoginPage {
   onLogin(form: NgForm) {
     // Save Credentials
     this.submitted = true;
-    this.userData.login(this.login.AppID);
-    this.userData.login(this.login.UserID);
-    this.userData.login(this.login.AccessToken);
+    this.userData.login(this.login.AppID, this.login.UserID, this.login.AccessToken);
 
     // SendBirdCall Init
     this.initSendBirdCall(this.login.AppID);
     this.authentication();
+    this.navCtrl.setRoot(CallPage);
   }      
 
   public initSendBirdCall(appId:string) {
@@ -54,10 +55,9 @@ export class LoginPage {
         connectWebSocket()
         .then(/* Succeeded to connect */)
         .catch(/* Failed to connect */);
-        alert("authentication success");
-        useMedia; // access mircrophone & camera
-
+        //alert("authentication success");
       }
+      return result;
     });
   }
   

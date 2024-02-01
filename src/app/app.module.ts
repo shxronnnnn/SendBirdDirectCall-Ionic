@@ -9,7 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { UserData } from '../providers/user-data/user-data';
-import { CallService } from '../providers/call-service/call-service';
+import { CallService } from '../pages/call/call-service';
 import { CallPage } from '../pages/call/call';
 
 @NgModule({

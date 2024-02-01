@@ -10,6 +10,19 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content >
+  <ion-input
+  label="Calee ID"
+  labelPlacement="stacked"
+  placeholder="Enter Callee ID"
+  fill="transparent"
+  [(ngModel)]="Callee.CalleeID"
+  name="AppID"
+  type="text"
+  #AppID="ngModel"
+  spellcheck="false"
+  autocapitalize="off"
+  errorText="Callee ID is required"
+  required>
+  </ion-input>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserOptions } from './user-options';
+import { UserOptions } from '../../providers/user-options';
 import { NgForm } from '@angular/forms';
 import { UserData } from '../../providers/user-data/user-data';
 import { authenticate, init, connectWebSocket } from 'sendbird-calls';

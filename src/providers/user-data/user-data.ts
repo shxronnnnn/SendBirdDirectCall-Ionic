@@ -20,6 +20,13 @@ export class UserData {
     });
   }
 
+  Callee(CalleeID: string) {
+    return this.storage.set(this.HAS_LOGGED_IN, true).then(() => {
+      this.setCalleeID(CalleeID);
+      return window.dispatchEvent(new CustomEvent('user:login'));
+    });
+  }
+
   setAppID(AppID: string): Promise<any> {
     return this.storage.set('AppID', AppID);
   }
@@ -30,6 +37,10 @@ export class UserData {
 
   setAccessToken(AccessToken: string): Promise<any> {
     return this.storage.set('AccessToken', AccessToken);
+  }
+
+  setCalleeID(CalleeID: string): Promise<any> {
+    return this.storage.set('CalleeID', CalleeID);
   }
 
   getAppID(): Promise<string> {

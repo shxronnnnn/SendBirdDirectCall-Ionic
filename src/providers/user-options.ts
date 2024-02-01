@@ -3,3 +3,7 @@ export interface UserOptions {
     UserID: string;
     AccessToken: string;
 }
+
+export interface CalleeOptions {
+    CalleeID: string;
+}

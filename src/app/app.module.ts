@@ -9,8 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { UserData } from '../providers/user-data/user-data';
-import { CallService } from '../pages/call/call-service';
 import { CallPage } from '../pages/call/call';
+import { DialPage } from '../pages/dial/dial';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { CallPage } from '../pages/call/call';
     HomePage,
     LoginPage,
     CallPage,
+    DialPage
   ],
   imports: [
     BrowserModule,
@@ -30,13 +31,13 @@ import { CallPage } from '../pages/call/call';
     HomePage,
     LoginPage,
     CallPage,
+    DialPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData,
-    CallService,
   ]
 })
 export class AppModule {}

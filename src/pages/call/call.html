@@ -6,23 +6,31 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>call</ion-title>
+    <ion-title>Make a Call</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content >
-  <ion-input
-  label="Calee ID"
-  labelPlacement="stacked"
-  placeholder="Enter Callee ID"
-  fill="transparent"
-  [(ngModel)]="Callee.CalleeID"
-  name="AppID"
-  type="text"
-  #AppID="ngModel"
-  spellcheck="false"
-  autocapitalize="off"
-  errorText="Callee ID is required"
-  required>
-  </ion-input>
+  <div class="call-form">
+    <form #callForm="ngForm" novalidate>
+      <ion-card>
+        <ion-input
+        label="Callee ID"
+        labelPlacement="stacked"
+        placeholder="Enter Callee ID"
+        fill="transparent"
+        [(ngModel)]="calleeInfo.CalleeID"
+        name="CalleeID"
+        type="text"
+        #CalleeID="ngModel"
+        spellcheck="false"
+        autocapitalize="off"
+        errorText="Callee ID is required"
+        required>
+        </ion-input>
+        <button ion-button color="primary" (click)="onVoiceCall()">Voice Call</button>
+        <button ion-button color="primary">Video Call</button>
+      </ion-card>
+    </form>
+  </div>
 </ion-content>

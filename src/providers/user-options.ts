@@ -7,3 +7,7 @@ export interface UserOptions {
 export interface CalleeOptions {
     CalleeID: string;
 }
+
+export interface AutoAuthenticateHandler {
+    onResult(userId:string);
+}

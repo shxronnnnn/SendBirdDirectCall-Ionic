@@ -1,3 +1,21 @@
 page-call {
-
+    .call-logo {
+        min-height: 200px;
+      
+        padding: 20px 0;
+      
+        text-align: center;
+      }
+      
+      .call-logo img {
+        max-width: 150px;
+      }
+      
+      .call-form {
+        padding: 16px;
+      }
+      
+      ion-input {
+        margin-bottom: 10px;
+      }
 }

@@ -28,6 +28,7 @@
     "android": "0.0.8",
     "cli": "^1.0.1",
     "cordova": "^12.0.0",
+    "firebase": "^10.8.0",
     "ionic": "^5.4.16",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",

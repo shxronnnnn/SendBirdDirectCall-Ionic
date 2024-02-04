@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserOptions } from '../../providers/user-options';
-import { NgForm } from '@angular/forms';
-import { UserData } from '../../providers/user-data/user-data';
 import { authenticate, init, connectWebSocket } from 'sendbird-calls';
 import { CallPage } from '../call/call';
 import { initializeApp } from "firebase/app";
@@ -39,13 +37,10 @@ export class LoginPage {
   // app = initializeApp(this.firebaseConfig);
   // analytics = getAnalytics(this.app);
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userData: UserData,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  onLogin(form: NgForm) {
-    //this.submitted = true;
-    //this.userData.login(this.login.AppID, this.login.UserID, this.login.AccessToken);
-
+  onLogin() {
     // SendBirdCall Init
     this.initSendBirdCall(this.login.AppID);
     this.authentication();

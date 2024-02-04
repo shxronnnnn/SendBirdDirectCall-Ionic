@@ -4,6 +4,13 @@ export interface UserOptions {
     AccessToken: string;
 }
 
+export interface User {
+    isActive: boolean;
+    userId: string;
+    metaData: Record<string, string>;
+    nickname: string;
+    profileUrl: string;
+  }
 export interface CalleeOptions {
     CalleeID: string;
 }

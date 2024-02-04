@@ -8,7 +8,6 @@ import { IonicStorageModule} from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { UserData } from '../providers/user-data/user-data';
 import { CallPage } from '../pages/call/call';
 import { DialPage } from '../pages/dial/dial';
 
@@ -37,7 +36,6 @@ import { DialPage } from '../pages/dial/dial';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserData,
   ]
 })
 export class AppModule {}

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NgForm } from '@angular/forms';
-import { UserData, User} from '../../providers/user-data/user-data';
+import { User } from '../../providers/user-options';
 import { CalleeOptions } from '../../providers/user-options';
 import { DialPage } from '../dial/dial';
-import { DialParams, DirectCall, dial} from 'sendbird-calls';
+import { DialParams, DirectCall , dial} from 'sendbird-calls';
 
 /**
  * Generated class for the CallPage page.
@@ -24,28 +23,45 @@ export class CallPage {
   calleeInfo: CalleeOptions = {CalleeID:''};
   submitted = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userData: UserData) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   dialParams:DialParams = {
     userId: "",
-    isVideoCall: true,
+    isVideoCall: false,
     callOption: {
       // localMediaView?: HTMLMediaElement;
       // remoteMediaView?: HTMLMediaElement;
       audioEnabled: true,
-      videoEnabled: true
+      videoEnabled: false
     }
   };
   
-  onVoiceCall(form: NgForm){
+  onVoiceCall(){
     this.dialParams.userId = this.calleeInfo.CalleeID;
+    this.dialParams.isVideoCall = false;
+    this.dialParams.callOption.videoEnabled = false;
     dial(this.dialParams, (call, error) => {
       if (error) {
-        alert("calling error");
+        alert("Calling Failed");
       }
       else {
-        alert("CAlling now");
+        alert("Calling now");
+      }
+    });
+    this.navCtrl.setRoot(DialPage);
+  };
+
+  onVideoCall(){
+    this.dialParams.userId = this.calleeInfo.CalleeID;
+    this.dialParams.isVideoCall = false;
+    this.dialParams.callOption.videoEnabled = false;
+    dial(this.dialParams, (call, error) => {
+      if (error) {
+        alert("Calling Failed");
+      }
+      else {
+        alert("Calling now");
       }
     });
     this.navCtrl.setRoot(DialPage);

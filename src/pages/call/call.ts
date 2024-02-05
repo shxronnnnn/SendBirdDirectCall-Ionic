@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers/user-options';
 import { CalleeOptions } from '../../providers/user-options';
-import { DialPage } from '../dial/dial';
 import { DialParams, DirectCall , dial} from 'sendbird-calls';
+import { AudioDevice, VideoDevice } from './Media';
 
 /**
  * Generated class for the CallPage page.
@@ -19,7 +19,6 @@ import { DialParams, DirectCall , dial} from 'sendbird-calls';
 })
 
 export class CallPage {
-  
   calleeInfo: CalleeOptions = {CalleeID:''};
   submitted = false;
 
@@ -30,8 +29,6 @@ export class CallPage {
     userId: "",
     isVideoCall: false,
     callOption: {
-      // localMediaView?: HTMLMediaElement;
-      // remoteMediaView?: HTMLMediaElement;
       audioEnabled: true,
       videoEnabled: false
     }
@@ -45,27 +42,26 @@ export class CallPage {
       if (error) {
         alert("Calling Failed");
       }
-      else {
-        alert("Calling now");
-      }
+      call.onEstablished = (call) => {
+        
+      };
     });
-    this.navCtrl.setRoot(DialPage);
   };
 
   onVideoCall(){
     this.dialParams.userId = this.calleeInfo.CalleeID;
-    this.dialParams.isVideoCall = false;
-    this.dialParams.callOption.videoEnabled = false;
+    this.dialParams.isVideoCall = true;
+    this.dialParams.callOption.videoEnabled = true;
     dial(this.dialParams, (call, error) => {
       if (error) {
         alert("Calling Failed");
       }
-      else {
-        alert("Calling now");
-      }
+      call.onEstablished = (call) => {
+        
+      };
     });
-    this.navCtrl.setRoot(DialPage);
   };
+
 }
 
 export interface SendbirdCallListener {
@@ -77,7 +73,6 @@ export interface SendbirdCallListener {
   onRinging: (call: DirectCallProperties) => void;
 };
 
-
 export interface DirectCallProperties {
   /**
    * Gets call ID.
@@ -85,7 +80,15 @@ export interface DirectCallProperties {
    * @since 1.0.0
    */
   callId: string;
-  
+
+  /**
+   * The UUID form of callId. Useful when dealing with CallKit.
+   *
+   * @platform iOS
+   * @since 1.0.0
+   */
+  ios_callUUID: string | null;
+
   /**
    * Gets call log.
    *
@@ -162,6 +165,37 @@ export interface DirectCallProperties {
    * @since 1.0.0
    */
   myRole: DirectCallUserRole | null;
+
+  /**
+   * Gets available video devices.
+   * List of available {@link VideoDevice}.
+   *
+   * @since 1.0.0
+   */
+  availableVideoDevices: VideoDevice[];
+
+  /**
+   * Gets current video device.
+   *
+   * @since 1.0.0
+   */
+  currentVideoDevice: VideoDevice | null;
+
+  /**
+   * Gets available audio devices.
+   *
+   * @platform Android
+   * @since 1.0.0
+   */
+  android_availableAudioDevices: AudioDevice[];
+
+  /**
+   * Gets current audio device.
+   *
+   * @platform Android
+   * @since 1.0.0
+   */
+  android_currentAudioDevice: AudioDevice | null;
 
   /**
    * Is ended.
@@ -279,7 +313,7 @@ export type CallOptions = {
 export enum DirectCallEndResult {
   /** Default value of the EndResult. **/
   NONE = 'NONE',
-
+  
   /** The call has ended by either the caller or callee after successful connection. **/
   COMPLETED = 'COMPLETED',
 

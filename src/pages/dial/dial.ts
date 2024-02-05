@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DirectCallProperties } from '../call/call';
 
 /**
  * Generated class for the DialPage page.
@@ -14,12 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dial.html',
 })
 export class DialPage {
-
+  public calleeName: string;
+  directCallProperties: DirectCallProperties;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DialPage');
+  ionViewWillLoad(){
+    //this.calleeName = this.directCallProperties.callId;
   }
 
 }

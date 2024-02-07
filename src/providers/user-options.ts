@@ -10,7 +10,8 @@ export interface User {
     metaData: Record<string, string>;
     nickname: string;
     profileUrl: string;
-  }
+}
+
 export interface CalleeOptions {
     CalleeID: string;
 }

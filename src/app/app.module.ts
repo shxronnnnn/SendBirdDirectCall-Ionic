@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CallPage } from '../pages/call/call';
+import { VoicecallPage } from '../pages/voicecall/voicecall';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CallPage } from '../pages/call/call';
     HomePage,
     LoginPage,
     CallPage,
+    VoicecallPage
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { CallPage } from '../pages/call/call';
     HomePage,
     LoginPage,
     CallPage,
+    VoicecallPage
   ],
   providers: [
     StatusBar,

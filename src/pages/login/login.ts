@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserOptions } from '../../providers/user-options';
 import { authenticate, init, connectWebSocket } from 'sendbird-calls';
 import { CallPage } from '../call/call';
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
 
 
 /**
@@ -24,19 +24,6 @@ export class LoginPage {
   submitted = false;
   callPage: CallPage;
 
-  // firebaseConfig = {
-  //   apiKey: "AIzaSyD0jY76YxxSv4PhEY9bTS9jzEzo1OGoL_k",
-  //   authDomain: "sendbirddirectcall-f57a4.firebaseapp.com",
-  //   projectId: "sendbirddirectcall-f57a4",
-  //   storageBucket: "sendbirddirectcall-f57a4.appspot.com",
-  //   messagingSenderId: "233841587764",
-  //   appId: "1:233841587764:web:b9f25b3c88937c08a4bc61",
-  //   measurementId: "G-RVELVYE26B"
-  // };
-  
-  // app = initializeApp(this.firebaseConfig);
-  // analytics = getAnalytics(this.app);
-  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -64,7 +51,6 @@ export class LoginPage {
         connectWebSocket()
         .then(/* Succeeded to connect */)
         .catch(/* Failed to connect */);
-        //alert("authentication success");
       }
       return result;
     });
